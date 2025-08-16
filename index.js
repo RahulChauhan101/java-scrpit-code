@@ -1,5 +1,5 @@
-  // index.js
- function reverseString(str) {
+// index.js
+function reverseString(str) {
     return str.split('').reverse().join("");
 }
 console.log(reverseString("hello World"));
@@ -68,8 +68,8 @@ Greet("Rahul", message =>
 
 
 // oprator precedence
-let add = (a,b) => a+b;
-let a= 5;   
+let add = (a, b) => a + b;
+let a = 5;
 let b = 10;
 console.log(`add result is ${a}  + ${b} =  ${add(a, b)}`);
 console.log(`add result is ${a}  + ${b} =  ${add(a, b)} * 10 = ${add(a, b) * 10}`);
