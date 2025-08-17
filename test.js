@@ -124,40 +124,42 @@
 
 
 
-const input = {
-  a: { b:{ c: 5 } },
-  d: 10,
-  // e: { f: { g: 15, h: 20 }, 
-  // i: 25 },
-};
+// const input = {
+//   a: { b: { c: 5 } },
+//   d: 10,
+//   e: {
+//     f: { g: 15, h: 20 },
+//     i: 25
+//   },
+// };
 
-function flattenobject(obj, perentkey = "", result = {}) {
-  for (const key in obj) {
-    const newKey = perentkey ? `${perentkey}.${key}` : key;
-    if (typeof obj[key] === 'object' && obj[key] !== null) {
-      console.log(`asd Flattening Key: ${newKey}`);
+// function flattenobject(obj, perentkey = "", result = {}) {
+//   for (const key in obj) {
+//     const newKey = perentkey ? `${perentkey}.${key}` : key;
+//     if (typeof obj[key] === 'object' && obj[key] !== null) {
+//       console.log(`asd Flattening Key: ${newKey}`);
 
-      flattenobject(obj[key], newKey, result);
-      console.log(`asdasd Flattened Key: ${newKey}`);
-    } else {
-      result[newKey] = obj[key];
-      console.log(`wqewqe  Flattened Key: ${newKey}, Value: ${obj[key]}`);
-    }
-  }
-  return result;
+//       flattenobject(obj[key], newKey, result);
+//       console.log(`asdasd Flattened Key: ${newKey}`);
+//     } else {
+//       result[newKey] = obj[key];
+//       console.log(`wqewqe  Flattened Key: ${newKey}, Value: ${obj[key]}`);
+//     }
+//   }
+//   return result;
 
-}
-const output = flattenobject(input);
+// }
+// const output = flattenobject(input);
 
-// console.log("Input Object:", input);
-console.log("Flattened Object:", output);
+// // console.log("Input Object:", input);
+// console.log("Flattened Object:", output);
 
 
-// let matrix = [
-//   [1,2,3],
-//   [4,5,6],
-//   [7,8,9],
-// ];
+// // let matrix = [
+// //   [1,2,3],
+// //   [4,5,6],
+// //   [7,8,9],
+// // ];
 
 // let matrix = [
 //   [1, 2, 3, 4, 5],
@@ -217,5 +219,93 @@ console.log("Flattened Object:", output);
 // }
 // console.log("Spiral Order:", spiralOrder(matrix).join(","));
 
-// let output = matrix.flat().join(",");
-// console.log("Flattened Output:", output);
+// let matrixoutput = matrix.flat().join(",");
+// console.log("Flattened Matrix:");
+// console.log("Flattened Output:", matrixoutput);
+
+// const user = [{
+//   name: "A",
+//   age: 25,
+// }, {
+//   name: "B",
+//   age: 20
+// }, {
+//   name: "C",
+//   age: 30,
+// },
+//  {
+//   name: "D",
+//   age: 22
+// // }
+// ];
+// const Age = (a, b) => {
+//   return a.age - b.age;
+// };
+// const array = user.sort(Age).reverse().map(u => u.name).join(", ")
+// console.log([array]);
+
+// const promise3 = new Promise((resolve, reject) => {
+//   const num = Math.floor(Math.random() * 10) + 1;
+//   if (num >= 5) {
+//     resolve(`Success: number is ${num}`);
+//   } else {
+//     reject(`Failed: number is ${num}`);
+//   }
+// });
+
+// promise3
+//   .then((msg) => console.log(msg))
+//   .catch((err) => console.log(err));
+
+let number = [9, 26, 10, 23, 8, 99, 100, 45, 65, 30, 5, 3];
+
+function findNum(arr) {
+  let largest = arr[0];
+  let smallest = arr[0];
+  let Secondlargest = arr[0];
+  let Secondsmallest = arr[0];
+  let middle = arr[0];
+  let sortedArray = arr.sort((a, b) => a - b);
+  let oddNumbers = sortedArray.filter(num => num % 2 !== 0);
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > largest) {
+      largest = arr[i];
+    }
+  };
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > Secondlargest && arr[i] < largest) {
+      Secondlargest = arr[i];
+    }
+  };
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < smallest) {
+      smallest = arr[i];
+    }
+  };
+  for (let i = 1; i < arr.length; i++) {
+    console.log("Secondsmallest num is", Secondsmallest);
+    if (arr[i] < Secondsmallest && arr[i] > smallest) {
+      Secondsmallest = arr[i];
+    }
+  }
+
+  middle = sortedArray[Math.ceil(sortedArray.length / 2)] || oddNumbers[0];
+  oddNumbers = sortedArray.filter(num => num % 2 !== 0);
+
+  return { largest, smallest, Secondlargest, Secondsmallest, middle, oddNumbers };
+}
+console.log("////////  Sorted Number /////////");
+console.log(number.sort((a, b) => a - b));
+console.log(number.length);
+console.log("////////  Odd Number /////////");
+console.log("Odd Numbers are:", findNum(number).oddNumbers);
+console.log("////////  Big number /////////");
+console.log("Big num is :", findNum(number).largest);
+console.log("Second Big num is :", findNum(number).Secondlargest);
+console.log("//////// Middle number /////////");
+console.log("Middle num is :", findNum(number).middle);
+console.log("//////// Small number /////////");
+console.log("Small num is :", findNum(number).smallest);
+console.log("Second Small num is :", findNum(number).Secondsmallest);
