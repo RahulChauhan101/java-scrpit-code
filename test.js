@@ -124,35 +124,34 @@
 
 
 
-// const input = {
-//   a: { b: { c: 5 } },
-//   d: 10,
-//   e: {
-//     f: { g: 15, h: 20 },
-//     i: 25
-//   },
-// };
+const input = {
+  a: { b: { c: 5 } },
+  d: 10,
+  e: {f: { g: 15 } },
+  i: 25,
+  };
 
-// function flattenobject(obj, perentkey = "", result = {}) {
-//   for (const key in obj) {
-//     const newKey = perentkey ? `${perentkey}.${key}` : key;
-//     if (typeof obj[key] === 'object' && obj[key] !== null) {
-//       console.log(`asd Flattening Key: ${newKey}`);
 
-//       flattenobject(obj[key], newKey, result);
-//       console.log(`asdasd Flattened Key: ${newKey}`);
-//     } else {
-//       result[newKey] = obj[key];
-//       console.log(`wqewqe  Flattened Key: ${newKey}, Value: ${obj[key]}`);
-//     }
-//   }
-//   return result;
+function flattenobject(obj, perentkey = "", result = {}) {
+  for (const key in obj) {
+    const newKey = perentkey ? `${perentkey}.${key}` : key;
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+      console.log(`asd Flattening Key: ${newKey}`);
 
-// }
-// const output = flattenobject(input);
+      flattenobject(obj[key], newKey, result);
+      console.log(`asdasd Flattened Key: ${newKey}`);
+    } else {
+      result[newKey] = obj[key];
+      console.log(`wqewqe  Flattened Key: ${newKey}, Value: ${obj[key]}`);
+    }
+  }
+  return result;
 
-// // console.log("Input Object:", input);
-// console.log("Flattened Object:", output);
+}
+const output = flattenobject(input);
+
+// console.log("Input Object:", input);
+console.log("Flattened Object:", output);
 
 
 // // let matrix = [
@@ -223,26 +222,26 @@
 // console.log("Flattened Matrix:");
 // console.log("Flattened Output:", matrixoutput);
 
-// const user = [{
-//   name: "A",
-//   age: 25,
-// }, {
-//   name: "B",
-//   age: 20
-// }, {
-//   name: "C",
-//   age: 30,
-// },
+const user = [{
+  name: "A",
+  age: 25,
+}, {
+  name: "B",
+  age: 20
+}, {
+  name: "C",
+  age: 30,
+},
 //  {
-//   name: "D",
-//   age: 22
-// // }
-// ];
-// const Age = (a, b) => {
-//   return a.age - b.age;
-// };
-// const array = user.sort(Age).reverse().map(u => u.name).join(", ")
-// console.log([array]);
+  // name: "D",
+  // age: 22
+// }
+];
+const Age = (a, b) => {
+  return a.age - b.age;
+};
+const array = user.sort(Age).reverse().map(u => u.name).join(", ")
+console.log([array]);
 
 // const promise3 = new Promise((resolve, reject) => {
 //   const num = Math.floor(Math.random() * 10) + 1;
