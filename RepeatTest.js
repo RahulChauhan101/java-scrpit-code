@@ -44,10 +44,10 @@
 //      return acc;
 //  }, {});
 //  console.log(findCategory);
-    
+
 // 2
 // find count
-const fruits = [ "apple", "banana","apple","orange","banana","apple"];
+const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
 // output {apple:3, banana:2, orange:1 }
 
 // function countFruits(fruits) {
@@ -62,19 +62,80 @@ const fruits = [ "apple", "banana","apple","orange","banana","apple"];
 // let output = fruits.reduce((acc, fruit) => ({ ...acc,[fruit]: (acc[fruit] || 0) + 1}), {});
 // console.log(output);
 
-let countFruits = fruits.reduce((acc,fruit) =>({...acc, [fruit]: (acc[fruit] || 0) +1}), {});
-console.log(countFruits);
+// let countFruits = fruits.reduce((acc,fruit) =>({...acc, [fruit]: (acc[fruit] || 0) +1}), {});
+// console.log(countFruits);
 
-let countingFruits = fruits.reduce((acc, fruit) => ({ ...acc,[fruit]: (acc[fruit] || 0) + 1}), {});
+// let countingFruits = fruits.reduce((acc, fruit) => ({ ...acc,[fruit]: (acc[fruit] || 0) + 1}), {});
 
-let arry = [ 1,2,3,4,5];
+// let arry = [ 10,2,30,14,5];
 
-let Array = arry.sort((a,b)=> a + b);
-console.log("Array", Array);
-
-
-let sum = arry.reduce((a,b) => a+b);
-console.log("Sum of Array", sum);
-console.log(`sum of Array is ${arry.join( " + ")} = ${sum}`);
+// let Array = arry.sort((a,b)=> a - b);
+// console.log("Array", Array);
 
 
+// let sum = Array.reduce((a,b) => a+b);
+// console.log("Sum of Array", Array);
+// console.log(`sum of Array is ${Array .join( " + ")} = ${sum}`);
+
+let Array = [1, [3, 2], [5, [4]]]
+
+let newarray = Array.flat(Infinity).sort((a, b) => a - b);
+console.log(newarray);
+
+
+// find depth
+
+let data = { a: { b: { c: { d: 5 } } } };
+
+
+function findkeyDepth(obj, depth = 1) {
+    let result = [];
+    for (let key in obj) {
+        result = [...result, { key, depth }];
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+            result = [...result, ...findkeyDepth(obj[key], depth + 1)];
+        }
+    }
+    return result;
+}
+console.log(findkeyDepth(data));
+const keywithDepth = findkeyDepth(data);
+console.log(keywithDepth.find(item => item.key === 'a'));
+
+const target = keywithDepth.find(item => item.depth === 4);
+console.log(target);
+
+
+const data2 = { a: 1, b: { x: 2, y: { z: 1 } }, c: 1 };
+
+function findkeywithvalue(obj, target) {
+    let result = [];
+    for (let key in obj) {
+        if (obj[key] === target) {
+            result = [...result, key];
+        }
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+            result = [...result, ...findkeyDepth(obj[key], target)];
+        }
+    }
+    return result;
+}
+console.log(findkeywithvalue(data2, 1));
+
+const data3 = { a: 1, b: { x: 2, y: { z: 1 } }, c: 1 };
+
+function findKeysWithValue(obj, target) {
+    let result = [];
+    for (let key in obj) {
+        if (obj[key] === target) {
+            result = [...result, key]; // spread add matching key
+        }
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+            result = [...result, ...findKeysWithValue(obj[key], target)];
+        }
+    }
+    return result;
+}
+
+console.log(findKeysWithValue(data2, 1));
+// 👉 [ 'a', 'z', 'c' ]
